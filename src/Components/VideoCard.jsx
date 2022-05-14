@@ -43,10 +43,11 @@ export default function VideoCard({ data, idx }) {
   };
 
   const opts2 = {
-    height: "780",
+    height: "842",
     width: "1280",
     playerVars: {
       autoplay: 0,
+      cc_load_policy: 1,
     },
   };
 
@@ -79,20 +80,20 @@ export default function VideoCard({ data, idx }) {
       border-[1px] border-slate-300 bg-stone-800 max-h-fit
       overflow-y-visible rounded-lg shadow-lg border-opacity-30 
       p-4 mt-6 m-4 flex space-x-4 justify-between 
-      transition ease-in-out duration-300
+      transition ease-in-out duration-300 shadow-stone-800
       `}
     >
       {isCollapsed && (
         <div className="flex justify-between">
           <div className="mb-2 text-lg font-semibold">{data._source.title}</div>
-          <div className="cursor-pointer" onClick={() => setIsCollapsed(!isCollapsed)}>{">"}</div>
+          <div className="cursor-pointer font-extrabold" onClick={() => setIsCollapsed(!isCollapsed)}>{">"}</div>
         </div>
       )}
       <YouTube
         videoId={data._id}
         opts={isCollapsed ? opts : opts2}
         onReady={_onReady}
-        containerClassName="aspect-w-16 aspect-h-9 shadow-stone-700 shadow-2xl "
+        containerClassName="aspect-w-16 aspect-h-9 shadow-stone-700  "
       />
       {/* {!isCollapsed &&  */}
       <Transition
@@ -106,9 +107,9 @@ export default function VideoCard({ data, idx }) {
         className={`flex-grow pl-8 `}
       >
         {/* <div className="flex flex-col border-l-2 m-0 border-slate-100 px-4"> */}
-          <div className="mb-2 text-lg font-semibold shadow-stone-700 shadow-2xl">
+          <div className="mb-2 text-lg font-semibold flex justify-between">
             {data._source.title}
-            <div className="cursor-pointer" onClick={() => setIsCollapsed(!isCollapsed)}>{">"}</div>
+            <div className="cursor-pointer font-extrabold" onClick={() => setIsCollapsed(!isCollapsed)}>{"<"}</div>
           </div>
           <div className="flex text-sm font-medium text-white">
             <div
